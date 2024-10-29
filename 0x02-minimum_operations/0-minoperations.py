@@ -23,24 +23,25 @@ Number of operations: 6
 def minOperations(n):
     if n <= 1:
         return 0
+    print("n before loop", n)
+
+    divisor =2
 
     num_of_operations = 0
-    divisor = 2
 
-    # Loop until we reduce n to 1
     while n > 1:
-        # While n is divisible by the current divisor
-        while n % divisor == 0:
-            num_of_operations += divisor  # Add divisor to the operation count
-            n /= divisor  # Reduce n by dividing it by divisor
+        if n % divisor == 0:
+            print("divisor is: ", divisor)
+            n = n / divisor
+            print("\nn = n / divisor", n)
 
-        divisor += 1  # Move to the next potential divisor
+            num_of_operations += divisor
+            print("\nnum of ops", num_of_operations)
+        else:
+            divisor += 1
+            print("divisor after increment", divisor)
 
     return num_of_operations
-
-# Test cases
-print(minOperations(9))   # Expected output: 6
-print(minOperations(12))  # Expected output: 7
-print(minOperations(3))   # Expected output: 3
-print(minOperations(5))   # Expected output: 5
-print(minOperations(10))  # Expected output: 7
+        
+n = 12
+print(minOperations(n))
