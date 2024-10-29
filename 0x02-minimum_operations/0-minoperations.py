@@ -21,27 +21,32 @@ Number of operations: 6
 
 
 def minOperations(n):
-    if n <= 1:
+    '''Computes the fewest number of operations needed to result
+    in exactly n H characters.
+    '''
+    if not isinstance(n, int):
         return 0
-    print("n before loop", n)
-
-    divisor =2
-
-    num_of_operations = 0
-
-    while n > 1:
-        if n % divisor == 0:
-            print("divisor is: ", divisor)
-            n = n / divisor
-            print("\nn = n / divisor", n)
-
-            num_of_operations += divisor
-            print("\nnum of ops", num_of_operations)
-        else:
-            divisor += 1
-            print("divisor after increment", divisor)
-
-    return num_of_operations
-        
-n = 12
-print(minOperations(n))
+    ops_count = 0
+    clipboard = 0
+    done = 1
+    # print('H', end='')
+    while done < n:
+        if clipboard == 0:
+            # init (the first copy all and paste)
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif n - done > 0 and (n - done) % done == 0:
+            # copy all and paste
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif clipboard > 0:
+            # paste
+            done += clipboard
+            ops_count += 1
+            # print('-(01)->{}'.format('H' * done), end='')
+    # print('')
+    return ops_count
