@@ -2,6 +2,7 @@
 """
 Masking and Shifting: We use byte & 0xFF to ensure only the last 8 bits are considered.
 """
+
 def validUTF8(data):
     num_bytes = 0
     
