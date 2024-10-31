@@ -35,4 +35,5 @@ def validUTF8(data):
                 return False
             num_bytes -= 1
 
+    # Ensure no unclosed multibyte sequence remains
     return num_bytes == 0
