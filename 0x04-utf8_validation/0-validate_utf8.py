@@ -1,11 +1,20 @@
 #!/usr/bin/python3
 """
-Masking and Shifting: We use byte & 0xFF to ensure only the last 8 bits are considered.
+This module contains a function to validate UTF-8 encoding.
 """
 
 def validUTF8(data):
+    """
+    Validate if a given data set represents a valid UTF-8 encoding.
+
+    Args:
+        data (list): List of integers representing bytes of data.
+
+    Returns:
+        bool: True if data is a valid UTF-8 encoding, False otherwise.
+    """
     num_bytes = 0
-    
+
     for byte in data:
         # Only the least significant 8 bits are relevant for UTF-8
         byte &= 0xFF
